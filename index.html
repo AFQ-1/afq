@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>منصة أفق | تطوير القدرات الذهنية بأسلوب حديث</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="منصة أفق التعليمية لتطوير القدرات الذهنية، أكثر من 90 مهارة، تجربة تعلم حديثة وسهلة وسريعة.">
+<meta name="keywords" content="منصة أفق, تدريب ذهني, مهارات التفكير, تعليم, قدرات, دورات, مهارات عقلية">
+<meta name="robots" content="index,follow">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+overflow-x:hidden;
+font-family:'Cairo',sans-serif;
+background:linear-gradient(135deg,#f6f9fc,#eef3f8);
+color:#111;
+scroll-behavior:smooth;
+}
+
+/* HEADER */
+header{
+position:fixed;
+width:100%;
+top:0;
+background:rgba(255,255,255,.96);
+backdrop-filter:blur(14px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px 50px;
+z-index:1000;
+box-shadow:0 8px 30px rgba(0,0,0,.06);
+}
+
+.logo{
+display:flex;
+gap:10px;
+font-weight:700;
+align-items:center;
+font-size:20px
+}
+
+.logo img{
+width:42px;
+border-radius:12px
+}
+
+/* NAV */
+nav{
+display:flex;
+gap:25px
+}
+
+nav a{
+text-decoration:none;
+color:#333;
+font-weight:600;
+position:relative;
+font-size:15px;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+right:0;
+bottom:-4px;
+width:0;
+height:2px;
+background:linear-gradient(45deg,#0A8FBC,#0077ff);
+transition:.25s;
+}
+
+nav a:hover{
+color:#0A8FBC
+}
+
+nav a:hover::after{
+width:100%;
+}
+
+/* زر القائمة للجوال */
+.menu-btn{
+display:none;
+font-size:28px;
+cursor:pointer
+}
+
+/* HERO */
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+padding:120px 20px;
+background:url("logo.png") center/cover no-repeat;
+position:relative;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:radial-gradient(circle at top,#0A8FBCaa 0,#000000aa 55%,#000000dd 100%);
+}
+
+.hero *{position:relative}
+.hero h1{
+font-size:44px;
+margin-bottom:20px;
+text-shadow:0 4px 14px rgba(0,0,0,.7);
+}
+.hero p{
+text-shadow:0 3px 10px rgba(0,0,0,.65);
+font-size:18px;
+margin-bottom:4px;
+}
+
+/* BUTTON */
+.btn{
+background:linear-gradient(45deg,#0A8FBC,#0077ff);
+color:white;
+border:none;
+padding:15px 38px;
+border-radius:14px;
+cursor:pointer;
+font-weight:700;
+margin-top:25px;
+transition:.3s;
+box-shadow:0 10px 25px rgba(0,119,255,.35);
+font-size:15px;
+}
+
+.btn:hover{
+transform:translateY(-4px) scale(1.02);
+box-shadow:0 16px 35px rgba(0,119,255,.45);
+}
+
+/* SECTIONS */
+section{
+padding:100px 20px;
+background:linear-gradient(135deg,#ffffff,#f3f6fa);
+}
+
+/* FEATURES */
+.features{
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap
+}
+
+.card{
+background:white;
+padding:28px;
+border-radius:20px;
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+width:270px;
+text-align:center;
+transition:transform .35s ease,box-shadow .35s ease;
+border:1px solid #e5e5e5;
+}
+
+.card:hover{
+transform:translateY(-12px) scale(1.03);
+box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.card svg{
+margin-bottom:12px;
+}
+
+/* ABOUT */
+.about{
+max-width:800px;
+margin:auto;
+text-align:center;
+line-height:2;
+font-size:18px
+}
+
+.about h2{
+margin-bottom:15px;
+font-size:26px;
+}
+
+/* REVIEWS */
+.reviews{
+background:white;
+text-align:center
+}
+
+.reviews h2{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.review-form{
+max-width:520px;
+margin:40px auto;
+display:flex;
+flex-direction:column;
+gap:15px
+}
+
+.review-form textarea{
+padding:18px;
+border-radius:12px;
+border:1px solid #ddd;
+resize:vertical;
+min-height:120px;
+font-family:'Cairo',sans-serif;
+font-size:15px;
+}
+
+.review-form input[type="file"]{
+border-radius:10px;
+border:1px solid #ddd;
+padding:10px;
+background:#f9fafc;
+font-size:14px;
+}
+
+#imagePreview{
+max-width:150px;
+margin-top:10px;
+border-radius:10px;
+display:none;
+}
+
+.small-note{
+font-size:12px;
+color:#777;
+}
+
+/* honeypot */
+.hp-field{
+display:none;
+}
+
+/* STARS */
+.stars{
+font-size:34px;
+cursor:pointer;
+user-select:none;
+}
+.stars span{color:#ddd;transition:.2s}
+.stars .active{color:gold;transform:scale(1.1)}
+
+/* REVIEW LIST */
+.review-list{
+max-width:760px;
+margin:40px auto;
+text-align:right
+}
+
+.review-item{
+background:#f6f9fc;
+padding:22px;
+border-radius:18px;
+margin-bottom:20px;
+border:1px solid #e3e7f0;
+}
+
+.review-item p{
+margin-bottom:8px;
+}
+
+.review-item img{
+max-width:100%;
+border-radius:12px;
+margin-top:10px
+}
+
+.review-meta{
+font-size:12px;
+color:#777;
+margin-top:4px;
+}
+
+.review-actions{
+margin-top:12px;
+display:flex;
+gap:10px
+}
+
+.review-actions button{
+padding:7px 14px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-family:'Cairo',sans-serif;
+font-size:13px;
+}
+
+.review-actions button:first-child{
+background:#0077ff;
+color:white
+}
+
+.review-actions button:last-child{
+background:#ff4d4d;
+color:white
+}
+
+/* انيميشن */
+.reveal{
+opacity:0;
+transform:translateY(50px);
+transition:1s cubic-bezier(.25,.8,.25,1);
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0)
+}
+
+/* ===== MOBILE ===== */
+@media (max-width:768px){
+header{
+padding:10px 16px;
+}
+
+.menu-btn{display:block}
+
+nav{
+display:none;
+flex-direction:column;
+width:100%;
+background:white;
+position:fixed;
+top:64px;
+right:0;
+left:0;
+padding:10px 0;
+z-index:999;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+nav a{
+padding:10px 20px;
+font-size:15px;
+}
+
+nav.show{display:flex}
+
+.hero{
+min-height:90vh;
+padding:150px 20px 80px
+}
+
+.hero h1{font-size:26px}
+.hero p{font-size:15px}
+
+.features{
+flex-direction:column;
+align-items:center
+}
+
+.card{
+width:95%;
+padding:24px;
+}
+
+section{padding:80px 15px}
+}
+
+footer{
+text-align:center;
+padding:40px 20px;
+color:#777;
+background:#f5f7fb;
+font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">
+<img src="logo.png" alt="شعار منصة أفق">
+<span>منصة أفق</span>
+</div>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<nav id="navMenu">
+<a href="#home">الرئيسية</a>
+<a href="https://salla.sa/afqedu/azAAzKn" target="_blank">المتجر</a>
+<a href="#reviews">الآراء</a>
+<a href="#about">من نحن</a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfFGw75AacYJzIGc5U67-3I6ohasSNSJyiq90LQ8hU53y-Clg/viewform" target="_blank">سجل اهتمامك</a>
+<a href="https://snapchat.com/t/FMFZo84e" target="_blank">تواصل</a>
+</nav>
+</header>
+
+<section class="hero reveal" id="home">
+<h1>✨ تجربة تعليمية ذكية مع منصة أفق</h1>
+<p>منصة متخصصة في تطوير القدرات الذهنية بأسلوب حديث وسهل</p>
+<p>🔥 خصم خاص باستخدام كوبون <b>AFQ</b></p>
+
+<a href="https://salla.sa/afqedu/azAAzKn" target="_blank">
+<button class="btn">ابدأ الآن</button>
+</a>
+</section>
+
+<section class="features reveal" aria-label="مميزات منصة أفق">
+<div class="card">
+    <!-- أيقونة SVG: دماغ -->
+    <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+      <path d="M8 3a3 3 0 0 0-3 3v1.5A2.5 2.5 0 0 0 3.5 10 2.5 2.5 0 0 0 6 12.5V13a3 3 0 0 0 3 3v-13A3 3 0 0 0 8 3Zm8 0a3 3 0 0 1 3 3v1.5A2.5 2.5 0 0 1 20.5 10 2.5 2.5 0 0 1 18 12.5V13a3 3 0 0 1-3 3v-13a3 3 0 0 1 1 0Z" stroke="#0A8FBC" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>⭐ أكثر من 90 مهارة ذهنية</p>
+</div>
+<div class="card">
+    <!-- كتاب -->
+    <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+      <path d="M5 4h9a3 3 0 0 1 3 3v11H8a3 3 0 0 0-3 3V4Z" stroke="#0A8FBC" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M17 18h2a2 2 0 0 0 2-2V7a3 3 0 0 0-3-3h-2" stroke="#0A8FBC" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>📚 مناسب للمبتدئ والمتقدم</p>
+</div>
+<div class="card">
+    <!-- برق -->
+    <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+      <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8Z" stroke="#0A8FBC" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>⚡ تعلم سريع ونتائج فعالة</p>
+</div>
+<div class="card">
+    <!-- هدف -->
+    <svg width="46" height="46" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="7" stroke="#0A8FBC" stroke-width="1.4"/>
+      <circle cx="12" cy="12" r="3" stroke="#0A8FBC" stroke-width="1.4"/>
+      <path d="M12 5V3M19 12h2M12 19v2M3 12H5" stroke="#0A8FBC" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <p>🎯 شرح مبسط وسهل</p>
+</div>
+</section>
+
+<section id="about" class="reveal">
+<div class="about">
+<h2>من نحن</h2>
+<p>
+منصة أفق منصة تعليمية متكاملة تهدف إلى تطوير القدرات الذهنية
+وبناء جيل متميز بأسلوب حديث وتجربة تعلم سهلة وسريعة، مع محتوى تفاعلي
+يركز على تنمية مهارات التفكير، التركيز، والذاكرة.
+</p>
+</div>
+</section>
+
+<section class="reviews reveal" id="reviews">
+<h2>الآراء والملاحظات</h2>
+<p id="avgRating">⭐ متوسط التقييم: 0</p>
+<p id="countRating">عدد التقييمات: 0</p>
+
+<div class="review-form" aria-label="نموذج إضافة تقييم">
+<textarea id="comment" placeholder="اكتب رأيك عن تجربتك مع منصة أفق (من 10 إلى 500 حرف)"></textarea>
+<input type="file" id="imageUpload" accept="image/*">
+<img id="imagePreview" alt="معاينة الصورة">
+
+<!-- حقل مخفي (honeypot) لمنع البوتات -->
+<input type="text" id="website" class="hp-field" autocomplete="off">
+
+<div class="small-note">يمكنك إرفاق صورة (بحد أقصى 2MB). سيتم مراجعة التقييمات قبل اعتمادها.</div>
+
+<div class="stars" id="stars" aria-label="اختيار التقييم من 1 إلى 5">
+<span data-rate="1">★</span>
+<span data-rate="2">★</span>
+<span data-rate="3">★</span>
+<span data-rate="4">★</span>
+<span data-rate="5">★</span>
+</div>
+
+<button class="btn" id="submitBtn" onclick="addReview()">إرسال التقييم</button>
+<div class="small-note" id="errorMsg" style="color:#d33;"></div>
+</div>
+
+<div class="review-list" id="reviewList" aria-label="قائمة التقييمات"></div>
+</section>
+
+<footer>© 2026 منصة أفق – جميع الحقوق محفوظة</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+<script>
+// ========== إعداد Firebase (استبدل القيم بقيم مشروعك) ==========
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const reviewsCollection = db.collection("reviews");
+
+// القائمة للجوال
+function toggleMenu(){
+document.getElementById("navMenu").classList.toggle("show");
+}
+
+// النجوم
+let rating=0;
+let editId=null;
+let lastReviewTime = 0;
+const stars=document.querySelectorAll("#stars span");
+const errorMsg = document.getElementById("errorMsg");
+const submitBtn = document.getElementById("submitBtn");
+
+stars.forEach(star=>{
+star.onclick=()=>{
+rating=Number(star.dataset.rate);
+updateStars();
+};
+});
+
+function updateStars(){
+stars.forEach(star=>{
+star.classList.toggle("active",Number(star.dataset.rate)<=rating);
+});
+}
+
+// معاينة الصورة
+const imageInput = document.getElementById("imageUpload");
+const imagePreview = document.getElementById("imagePreview");
+
+imageInput.addEventListener("change", ()=>{
+const file = imageInput.files[0];
+if(!file){
+imagePreview.style.display="none";
+imagePreview.src="";
+return;
+}
+if(file.size > 2 * 1024 * 1024){
+alert("الحد الأقصى لحجم الصورة هو 2MB");
+imageInput.value="";
+imagePreview.style.display="none";
+return;
+}
+if(!file.type.startsWith("image/")){
+alert("الملف يجب أن يكون صورة");
+imageInput.value="";
+imagePreview.style.display="none";
+return;
+}
+const reader = new FileReader();
+reader.onload = ()=>{
+imagePreview.src = reader.result;
+imagePreview.style.display = "block";
+};
+reader.readAsDataURL(file);
+});
+
+// إضافة تقييم
+async function addReview(){
+errorMsg.textContent = "";
+
+// honeypot
+if(document.getElementById("website").value.trim() !== ""){
+return;
+}
+
+const text=document.getElementById("comment").value.trim();
+const file=imageInput.files[0];
+
+if(text.length < 10 || text.length > 500){
+errorMsg.textContent = "الرجاء كتابة رأي بين 10 و 500 حرف.";
+return;
+}
+
+if(rating < 1 || rating > 5){
+errorMsg.textContent = "الرجاء اختيار تقييم من 1 إلى 5 نجوم.";
+return;
+}
+
+const now = Date.now();
+if(!editId && lastReviewTime && now - lastReviewTime < 30000){
+errorMsg.textContent = "يرجى الانتظار 30 ثانية قبل إرسال تقييم جديد.";
+return;
+}
+
+let imageData = null;
+if(file){
+if(file.size > 2 * 1024 * 1024){
+errorMsg.textContent = "الحد الأقصى لحجم الصورة هو 2MB.";
+return;
+}
+if(!file.type.startsWith("image/")){
+errorMsg.textContent = "الملف يجب أن يكون صورة.";
+return;
+}
+imageData = await readFileAsDataURL(file);
+}
+
+submitBtn.disabled = true;
+submitBtn.textContent = "جاري الإرسال...";
+
+try{
+if(editId){
+await reviewsCollection.doc(editId).update({
+  text,
+  rating,
+  image: imageData !== null ? imageData : firebase.firestore.FieldValue.delete(),
+  updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+});
+editId = null;
+}else{
+await reviewsCollection.add({
+  text,
+  rating,
+  image: imageData,
+  createdAt: firebase.firestore.FieldValue.serverTimestamp()
+});
+lastReviewTime = now;
+}
+
+document.getElementById("comment").value="";
+imageInput.value="";
+imagePreview.style.display="none";
+imagePreview.src="";
+rating=0;
+updateStars();
+await loadReviews();
+errorMsg.textContent = "";
+} catch(e){
+console.error(e);
+errorMsg.textContent = "حدث خطأ أثناء حفظ التقييم. حاول مرة أخرى.";
+} finally{
+submitBtn.disabled = false;
+submitBtn.textContent = "إرسال التقييم";
+}
+}
+
+function readFileAsDataURL(file){
+return new Promise((resolve,reject)=>{
+const reader = new FileReader();
+reader.onload = ()=>resolve(reader.result);
+reader.onerror = reject;
+reader.readAsDataURL(file);
+});
+}
+
+// تحميل التقييمات
+async function loadReviews(){
+const list=document.getElementById("reviewList");
+list.innerHTML = "جاري تحميل التقييمات...";
+try{
+const snapshot = await reviewsCollection
+  .orderBy("rating","desc")
+  .orderBy("createdAt","desc")
+  .limit(100)
+  .get();
+
+let total=0;
+let count=0;
+let html="";
+
+snapshot.forEach(doc=>{
+const r = doc.data();
+const id = doc.id;
+const rText = r.text || "";
+const rRating = Number(r.rating) || 0;
+const rImage = r.image || null;
+const created = r.createdAt && r.createdAt.toDate ? r.createdAt.toDate() : null;
+
+total += rRating;
+count++;
+
+html += `
+<div class="review-item">
+<p>${escapeHtml(rText)}</p>
+<div>${"⭐".repeat(rRating)}</div>
+${created ? `<div class="review-meta">تاريخ الإضافة: ${created.toLocaleDateString("ar-SA")}</div>` : ""}
+${rImage ? `<img src="${rImage}" alt="صورة التقييم">` : ""}
+<div class="review-actions">
+<button onclick="editReview('${id}')">تعديل</button>
+<button onclick="deleteReview('${id}')">حذف</button>
+</div>
+</div>
+`;
+});
+
+if(count===0){
+list.innerHTML = "<p>لا توجد تقييمات بعد، كن أول من يشارك رأيه.</p>";
+}else{
+list.innerHTML = html;
+}
+
+const avg=count?(total/count).toFixed(1):0;
+document.getElementById("avgRating").innerText="⭐ متوسط التقييم: "+avg;
+document.getElementById("countRating").innerText="عدد التقييمات: "+count;
+
+} catch(e){
+console.error(e);
+list.innerHTML = "<p>تعذر تحميل التقييمات حاليًا.</p>";
+}
+}
+
+// حذف تقييم
+async function deleteReview(id){
+if(!confirm("هل أنت متأكد من حذف هذا التقييم؟")) return;
+try{
+await reviewsCollection.doc(id).delete();
+await loadReviews();
+}catch(e){
+console.error(e);
+alert("تعذر حذف التقييم.");
+}
+}
+
+// تعديل تقييم
+async function editReview(id){
+try{
+const docSnap = await reviewsCollection.doc(id).get();
+if(!docSnap.exists) return;
+const r = docSnap.data();
+editId = id;
+
+document.getElementById("comment").value = r.text || "";
+rating = Number(r.rating) || 0;
+updateStars();
+
+if(r.image){
+imagePreview.src = r.image;
+imagePreview.style.display = "block";
+}else{
+imagePreview.style.display = "none";
+}
+
+window.scrollTo({top: document.getElementById("reviews").offsetTop - 80, behavior:"smooth"});
+}catch(e){
+console.error(e);
+}
+}
+
+// حماية من XSS
+function escapeHtml(str){
+return str.replace(/[&<>"']/g,function(m){
+return ({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+})[m];
+});
+}
+
+// انيميشن
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("active");
+}
+});
+},{threshold:0.15});
+
+document.querySelectorAll("section,.card").forEach(el=>{
+el.classList.add("reveal");
+observer.observe(el);
+});
+
+// تحميل التقييمات عند البداية
+loadReviews();
+</script>
+
+</body>
+</html>
